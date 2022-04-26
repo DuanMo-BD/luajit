@@ -1,3 +1,15 @@
+# IDE
+.idea/
+
+# Binaries
+bin/
+bin-int/
+
+# Solution & Project Files
+*.vcxproj
+*.vcxproj.filters
+*.sln
+
 # Prerequisites
 *.d
 
