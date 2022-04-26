@@ -13,9 +13,9 @@ workspace "luajit"
         "MultiProcessorCompile"
     }
 
-srcdir = "LuaJIT/src"
+srcdir = "luajit/src"
 outputconfig = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-dasmdir = "%{wks.location}/LuaJIT/dynasm"
+dasmdir = "%{wks.location}/luajit/dynasm"
 dasm = "%{dasmdir}/dynasm.lua"
 hostdir = "%{srcdir}/host"
 alllib = "%{srcdir}/lib_base.c %{srcdir}/lib_math.c %{srcdir}/lib_bit.c %{srcdir}/lib_string.c %{srcdir}/lib_table.c %{srcdir}/lib_io.c %{srcdir}/lib_os.c %{srcdir}/lib_package.c %{srcdir}/lib_debug.c %{srcdir}/lib_jit.c %{srcdir}/lib_ffi.c"
@@ -37,7 +37,7 @@ project "minilua"
 
     files
     {
-        "LuaJIT/src/host/minilua.c"
+        "luajit/src/host/minilua.c"
     }
 
     defines
@@ -71,14 +71,14 @@ project "buildvm"
 
     files
     {
-        "LuaJIT/src/host/buildvm*.c",
-        "LuaJIT/src/lj_def.h",
-        "LuaJIT/src/lj_arch.h"
+        "luajit/src/host/buildvm*.c",
+        "luajit/src/lj_def.h",
+        "luajit/src/lj_arch.h"
     }
 
     includedirs
     {
-        "LuaJIT/src"
+        "luajit/src"
     }
 
     defines
@@ -91,7 +91,7 @@ project "buildvm"
     {
         "%{buildvm} -m peobj -o %{intdir}/lj_vm.obj",
         "%{buildvm} -m bcdef -o %{srcdir}/lj_bcdef.h %{alllib}",
-        "%{buildvm} -m ffedf -o %{srcdir}/lj_ffdef.h %{alllib}",
+        "%{buildvm} -m ffdef -o %{srcdir}/lj_ffdef.h %{alllib}",
         "%{buildvm} -m libdef -o %{srcdir}/lj_libdef.h %{alllib}",
         "%{buildvm} -m recdef -o %{srcdir}/lj_recdef.h %{alllib}",
         "%{buildvm} -m vmdef -o %{srcdir}/jit/vmdef.h %{alllib}",
@@ -118,15 +118,15 @@ project "lua51"
 
     files
     {
-        "LuaJIT/src/lj_*.c",
-        "LuaJIT/src/lib_*.c",
-        "LuaJIT/src/lj_*.h",
-        "LuaJIT/src/lib_*.h",
+        "luajit/src/lj_*.c",
+        "luajit/src/lib_*.c",
+        "luajit/src/lj_*.h",
+        "luajit/src/lib_*.h",
     }
 
     includedirs
     {
-        "LuaJIT/src"
+        "luajit/src"
     }
 
     defines
@@ -161,12 +161,12 @@ project "luajit"
 
     files
     {
-        "LuaJIT/src/luajit.c",
+        "luajit/src/luajit.c",
     }
 
     includedirs
     {
-        "LuaJIT/src"
+        "luajit/src"
     }
 
     links

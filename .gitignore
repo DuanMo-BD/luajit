@@ -1,4 +1,5 @@
 # IDE
+.vs/
 .idea/
 
 # Binaries
@@ -8,6 +9,7 @@ bin-int/
 # Solution & Project Files
 *.vcxproj
 *.vcxproj.filters
+*.vcxproj.user
 *.sln
 
 # Prerequisites
