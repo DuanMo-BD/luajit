@@ -26,5 +26,6 @@ luajit
 2. IDE打开sln
 3. 编译minilua项目
 4. 编译buildvm项目
-5. 编译lua51项目
-6. 编译luajit项目
+5. 运行premake/Win-GenProjects.bat重新生成解决方案
+6. 编译lua51项目
+7. 编译luajit项目
