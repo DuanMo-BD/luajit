@@ -84,7 +84,8 @@ project "buildvm"
     defines
     {
         "_CRT_SECURE_NO_DEPRECATE",
-        "_CRT_STDIO_INLINE=__declspec(dllexport)__inline"
+        "_CRT_STDIO_INLINE=__declspec(dllexport)__inline",
+        "LUAJIT_ENABLE_LUA52COMPAT"
     }
 
     postbuildcommands
@@ -120,8 +121,7 @@ project "lua51"
     {
         "luajit/src/lj_*.c",
         "luajit/src/lib_*.c",
-        "luajit/src/lj_*.h",
-        "luajit/src/lib_*.h",
+        "luajit/src/*.h",
     }
 
     includedirs
@@ -133,7 +133,11 @@ project "lua51"
     {
         "_CRT_SECURE_NO_DEPRECATE",
         "_CRT_STDIO_INLINE=__declspec(dllexport)__inline",
-        "LUA_BUILD_AS_DLL"
+        "LUA_BUILD_AS_DLL",
+        "LUA_USE_APICHECK",
+        "LUAJIT_ENABLE_CHECKHOOK",
+        "LUAJIT_ENABLE_LUA52COMPAT",
+        "LUAJIT_ENABLE_GC64"
     }
 
     links
@@ -177,7 +181,8 @@ project "luajit"
     defines
     {
         "_CRT_SECURE_NO_DEPRECATE",
-        "_CRT_STDIO_INLINE=__declspec(dllexport)__inline"
+        "_CRT_STDIO_INLINE=__declspec(dllexport)__inline",
+        "LUAJIT_ENABLE_GC64"
     }
 
     filter "system:windows"
