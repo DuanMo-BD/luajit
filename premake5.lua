@@ -13,12 +13,12 @@ workspace "luajit"
         "MultiProcessorCompile"
     }
 
-srcdir = "luajit/src"
+srcdir = "LuaJIT/src"
 outputconfig = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 dasmdir = "%{wks.location}/luajit/dynasm"
 dasm = "%{dasmdir}/dynasm.lua"
 hostdir = "%{srcdir}/host"
-alllib = "%{srcdir}/lib_base.c %{srcdir}/lib_math.c %{srcdir}/lib_bit.c %{srcdir}/lib_string.c %{srcdir}/lib_table.c %{srcdir}/lib_io.c %{srcdir}/lib_os.c %{srcdir}/lib_package.c %{srcdir}/lib_debug.c %{srcdir}/lib_jit.c %{srcdir}/lib_ffi.c"
+alllib = "%{srcdir}/lib_base.c %{srcdir}/lib_math.c %{srcdir}/lib_bit.c %{srcdir}/lib_string.c %{srcdir}/lib_table.c %{srcdir}/lib_io.c %{srcdir}/lib_os.c %{srcdir}/lib_package.c %{srcdir}/lib_debug.c %{srcdir}/lib_jit.c %{srcdir}/lib_ffi.c %{srcdir}/lib_buffer.c"
 
 bindir = "%{wks.location}/bin/%{outputconfig}"
 intdir = "%{wks.location}/bin-int/%{outputconfig}"
@@ -37,7 +37,7 @@ project "minilua"
 
     files
     {
-        "luajit/src/host/minilua.c"
+        "LuaJIT/src/host/minilua.c"
     }
 
     defines
@@ -48,7 +48,7 @@ project "minilua"
 
     postbuildcommands
     {
-        "%{bindir}/minilua %{dasm} %{dasmflags} -o %{hostdir}/buildvm_arch.h %{srcdir}/vm_x86.dasc"
+        "%{bindir}/minilua %{dasm} -LN %{dasmflags} -o %{hostdir}/buildvm_arch.h %{srcdir}/vm_x86.dasc"
     }
 
     filter "system:windows"
@@ -71,14 +71,14 @@ project "buildvm"
 
     files
     {
-        "luajit/src/host/buildvm*.c",
-        "luajit/src/lj_def.h",
-        "luajit/src/lj_arch.h"
+        "LuaJIT/src/host/buildvm*.c",
+        "LuaJIT/src/lj_def.h",
+        "LuaJIT/src/lj_arch.h"
     }
 
     includedirs
     {
-        "luajit/src"
+        "LuaJIT/src"
     }
 
     defines
@@ -119,14 +119,14 @@ project "lua51"
 
     files
     {
-        "luajit/src/lj_*.c",
-        "luajit/src/lib_*.c",
-        "luajit/src/*.h",
+        "LuaJIT/src/lj_*.c",
+        "LuaJIT/src/lib_*.c",
+        "LuaJIT/src/*.h",
     }
 
     includedirs
     {
-        "luajit/src"
+        "LuaJIT/src"
     }
 
     defines
@@ -136,8 +136,7 @@ project "lua51"
         "LUA_BUILD_AS_DLL",
         "LUA_USE_APICHECK",
         "LUAJIT_ENABLE_CHECKHOOK",
-        "LUAJIT_ENABLE_LUA52COMPAT",
-        "LUAJIT_ENABLE_GC64"
+        "LUAJIT_ENABLE_LUA52COMPAT"
     }
 
     links
@@ -165,12 +164,12 @@ project "luajit"
 
     files
     {
-        "luajit/src/luajit.c",
+        "LuaJIT/src/luajit.c",
     }
 
     includedirs
     {
-        "luajit/src"
+        "LuaJIT/src"
     }
 
     links
