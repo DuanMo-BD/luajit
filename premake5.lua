@@ -43,12 +43,16 @@ project "minilua"
     defines
     {
         "_CRT_SECURE_NO_DEPRECATE",
-        "_CRT_STDIO_INLINE=__declspec(dllexport)__inline"
+        "_CRT_STDIO_INLINE=__declspec(dllexport)__inline",
+        "LUAJIT_ENABLE_GC64",
+        "LUAJIT_ENABLE_LUA52COMPAT",
+        "LUAJIT_ENABLE_CHECKHOOK",
+        "LUA_USE_APICHECK",
     }
 
     postbuildcommands
     {
-        "%{bindir}/minilua %{dasm} -LN %{dasmflags} -o %{hostdir}/buildvm_arch.h %{srcdir}/vm_x86.dasc"
+        "%{bindir}/minilua %{dasm} -LN %{dasmflags} -o %{hostdir}/buildvm_arch.h %{srcdir}/vm_x64.dasc"
     }
 
     filter "system:windows"
@@ -85,7 +89,10 @@ project "buildvm"
     {
         "_CRT_SECURE_NO_DEPRECATE",
         "_CRT_STDIO_INLINE=__declspec(dllexport)__inline",
-        "LUAJIT_ENABLE_LUA52COMPAT"
+        "LUAJIT_ENABLE_GC64",
+        "LUAJIT_ENABLE_LUA52COMPAT",
+        "LUAJIT_ENABLE_CHECKHOOK",
+        "LUA_USE_APICHECK",
     }
 
     postbuildcommands
@@ -134,9 +141,10 @@ project "lua51"
         "_CRT_SECURE_NO_DEPRECATE",
         "_CRT_STDIO_INLINE=__declspec(dllexport)__inline",
         "LUA_BUILD_AS_DLL",
-        "LUA_USE_APICHECK",
+        "LUAJIT_ENABLE_GC64",
+        "LUAJIT_ENABLE_LUA52COMPAT",
         "LUAJIT_ENABLE_CHECKHOOK",
-        "LUAJIT_ENABLE_LUA52COMPAT"
+        "LUA_USE_APICHECK",
     }
 
     links
@@ -181,7 +189,10 @@ project "luajit"
     {
         "_CRT_SECURE_NO_DEPRECATE",
         "_CRT_STDIO_INLINE=__declspec(dllexport)__inline",
-        "LUAJIT_ENABLE_GC64"
+        "LUAJIT_ENABLE_GC64",
+        "LUAJIT_ENABLE_LUA52COMPAT",
+        "LUAJIT_ENABLE_CHECKHOOK",
+        "LUA_USE_APICHECK",
     }
 
     filter "system:windows"
